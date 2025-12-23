@@ -1,0 +1,18 @@
+/* Custom slider theme */
+.vueform-slider .slider-connect {
+    background-color: #78716c !important;
+}
+
+.vueform-slider .slider-handle {
+    background-color: #78716c !important;
+    border: 2px solid #78716c !important;
+}
+
+.vueform-slider .slider-handle:hover {
+    background-color: #57534e !important;
+    border-color: #57534e !important;
+}
+
+.vueform-slider .slider-horizontal .slider-handle:after {
+    background-color: #78716c !important;
+}
