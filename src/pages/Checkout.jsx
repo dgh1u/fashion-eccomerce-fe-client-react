@@ -19,7 +19,9 @@ export default function Checkout() {
         notes: '',
     });
 
-    const totalAmount = useMemo(() => cartStore.cartTotal(), [cartStore.cartTotal()]);
+    const SHIPPING_FEE = 30000;
+    const subtotal = useMemo(() => cartStore.cartTotal(), [cartStore.cartTotal()]);
+    const totalAmount = useMemo(() => subtotal + SHIPPING_FEE, [subtotal]);
 
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
     const getImageUrl = (image) => image || 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
@@ -170,8 +172,8 @@ export default function Checkout() {
                                 ))}
                             </div>
                             <div className="pt-3">
-                                <div className="flex justify-between mb-1.5 text-sm text-gray-800"><span>Tạm tính:</span><span>{formatPrice(totalAmount)}đ</span></div>
-                                <div className="flex justify-between mb-1.5 text-sm text-gray-800"><span>Phí vận chuyển:</span><span>Miễn phí</span></div>
+                                <div className="flex justify-between mb-1.5 text-sm text-gray-800"><span>Tạm tính:</span><span>{formatPrice(subtotal)}đ</span></div>
+                                <div className="flex justify-between mb-1.5 text-sm text-gray-800"><span>Phí vận chuyển:</span><span>{formatPrice(SHIPPING_FEE)}đ</span></div>
                                 <hr className="my-2" />
                                 <div className="flex justify-between text-base font-bold text-gray-800"><span>Tổng cộng:</span><span>{formatPrice(totalAmount)}đ</span></div>
                             </div>
