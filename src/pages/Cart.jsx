@@ -15,6 +15,7 @@ export default function Cart() {
     const [productImages, setProductImages] = useState(new Map());
     const [productInventories, setProductInventories] = useState(new Map());
 
+    const SHIPPING_FEE = 30000;
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
     const getImageUrl = (image) => image || 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
     const handleImageError = (e) => { e.target.src = 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image'; };
@@ -214,9 +215,9 @@ export default function Cart() {
                             <h3 className="m-0 mb-5 text-gray-800">Tóm tắt đơn hàng</h3>
                             <div className="flex justify-between mb-2 text-gray-800"><span>Tổng sản phẩm:</span><span>{cartStore.cartItemCount()} sản phẩm</span></div>
                             <div className="flex justify-between mb-2 text-gray-800"><span>Tạm tính:</span><span>{formatPrice(cartStore.cartTotal())}đ</span></div>
-                            <div className="flex justify-between mb-2 text-gray-800"><span>Phí vận chuyển:</span><span>Miễn phí</span></div>
+                            <div className="flex justify-between mb-2 text-gray-800"><span>Phí vận chuyển:</span><span>{formatPrice(SHIPPING_FEE)}đ</span></div>
                             <hr className="my-4" />
-                            <div className="flex justify-between text-lg mt-2 text-gray-800"><span><strong>Tổng cộng:</strong></span><span><strong>{formatPrice(cartStore.cartTotal())}đ</strong></span></div>
+                            <div className="flex justify-between text-lg mt-2 text-gray-800"><span><strong>Tổng cộng:</strong></span><span><strong>{formatPrice(cartStore.cartTotal() + SHIPPING_FEE)}đ</strong></span></div>
                             <div className="flex flex-col gap-2 mt-5 text-base text-white">
                                 <button onClick={() => navigate('/checkout')} className="px-6 py-3 rounded bg-green-600 text-white font-semibold text-center cursor-pointer border-0 transition-all duration-300 ease-in-out flex items-center justify-center gap-2 hover:bg-green-700">
                                     <i className="fas fa-credit-card text-white"></i>
