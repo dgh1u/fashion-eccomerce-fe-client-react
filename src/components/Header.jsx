@@ -21,10 +21,12 @@ const Header = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Hàm bật/tắt menu trên mobile
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
+    // Hàm đóng menu trên mobile
     const closeMobileMenu = () => {
         setMobileMenuOpen(false);
     };

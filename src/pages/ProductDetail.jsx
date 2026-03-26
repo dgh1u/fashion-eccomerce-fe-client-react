@@ -38,22 +38,27 @@ export default function ProductDetail() {
     }, [product]);
 
     const currentImage = useMemo(() => imageUrls[currentImageIndex] || placeholder, [imageUrls, currentImageIndex]);
+    // Hàm định dạng giá tiền
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
 
+    // Hàm lấy số lượng sản phẩm còn lại
     const getAvailableQuantity = (sizeId) => {
         if (!product?.inventories) return 0;
         const inventory = product.inventories.find((inv) => inv.size.id === sizeId);
         return inventory?.quantity || 0;
     };
 
+    // Hàm lấy số lượng tối đa có thể mua
     const getMaxQuantity = () => selectedSize ? getAvailableQuantity(selectedSize.id) : 0;
 
+    // Hàm chọn size sản phẩm
     const selectSize = (size, availableQty) => {
         if (availableQty === 0) return;
         setSelectedSize(size);
         setQuantity(1);
     };
 
+    // Hàm thêm sản phẩm vào giỏ hàng
     const addToCart = async () => {
         if (!selectedSize) return message.warning('Vui lòng chọn kích thước');
         try {
@@ -62,6 +67,7 @@ export default function ProductDetail() {
         } catch { message.error('Thêm vào giỏ hàng thất bại'); }
     };
 
+    // Hàm mua ngay sản phẩm
     const buyNow = async () => {
         if (!selectedSize) return message.warning('Vui lòng chọn kích thước');
         try {

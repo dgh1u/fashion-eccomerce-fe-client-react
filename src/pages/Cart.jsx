@@ -17,9 +17,12 @@ export default function Cart() {
 
     const SHIPPING_FEE = 30000;
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
+    // Hàm lấy URL hình ảnh hoặc hình mặc định
     const getImageUrl = (image) => image || 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImageError = (e) => { e.target.src = 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image'; };
 
+    // Hàm lấy số lượng còn lại trong kho
     const getAvailableQuantity = (productId, sizeId) => {
         const product = productInventories.get(productId);
         if (!product || !product.inventories) return 0;
@@ -27,6 +30,7 @@ export default function Cart() {
         return inventory?.quantity || 0;
     };
 
+    // Hàm cập nhật số lượng sản phẩm trong giỏ hàng
     const updateQuantity = async (item, newQuantity) => {
         if (newQuantity < 1) return;
 
@@ -53,6 +57,7 @@ export default function Cart() {
         }
     };
 
+    // Hàm xóa một sản phẩm khỏi giỏ hàng
     const removeItem = (item) => {
         Modal.confirm({
             title: 'Xác nhận xóa sản phẩm',
@@ -92,6 +97,7 @@ export default function Cart() {
         });
     };
 
+    // Hàm xóa toàn bộ sản phẩm trong giỏ hàng
     const clearAllCart = () => {
         Modal.confirm({
             title: 'Xác nhận xóa toàn bộ giỏ hàng',

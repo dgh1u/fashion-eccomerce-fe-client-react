@@ -32,15 +32,18 @@ const Profile = () => {
         fetchProfile();
     }, []);
 
+    // Hàm bắt đầu chế độ chỉnh sửa thông tin
     const startEditing = () => {
         setIsEditing(true);
     };
 
+    // Hàm hủy chỉnh sửa và khôi phục dữ liệu ban đầu
     const cancelEditing = () => {
         setProfileData({ ...initialProfileData.current });
         setIsEditing(false);
     };
 
+    // Hàm xử lý cập nhật thông tin tài khoản
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -55,6 +58,7 @@ const Profile = () => {
         }
     };
 
+    // Hàm xử lý thay đổi giá trị input
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProfileData(prev => ({

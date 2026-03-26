@@ -15,6 +15,7 @@ const ResetPassword = () => {
     const email = location.state?.email || '';
     const otp = location.state?.otp || '';
 
+    // Hàm kiểm tra tính hợp lệ của mật khẩu
     const validatePassword = (password) => {
         if (password.length < 8) {
             return 'Mật khẩu phải có ít nhất 8 ký tự.';
@@ -31,6 +32,7 @@ const ResetPassword = () => {
         return '';
     };
 
+    // Hàm xử lý đặt lại mật khẩu
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);

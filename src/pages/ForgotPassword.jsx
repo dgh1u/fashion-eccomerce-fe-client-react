@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { regenerateOTP } from '../apis/authService';
 import Logo from '../components/Logo';
+import logoImage from '../assets/logo.png';
 
 const ForgotPassword = () => {
     const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ const ForgotPassword = () => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Hàm xử lý khi gửi yêu cầu đặt lại mật khẩu
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -102,8 +104,8 @@ const ForgotPassword = () => {
                 </div>
 
                 <div className="text-center mt-6">
-                    <p className="text-sm text-gray-500">
-                        &copy; 2025 <a href="/home" className="text-blue-600 hover:text-blue-700 font-medium">28.Host Team</a>. All rights reserved.
+                    <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
+                        &copy; 2025 <a href="/home" className="inline-flex items-center hover:opacity-80 transition-opacity"><img src={logoImage} alt="Logo" className="h-6 w-auto" /></a>. All rights reserved.
                     </p>
                 </div>
             </div>

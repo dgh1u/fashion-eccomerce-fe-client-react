@@ -40,11 +40,13 @@ const ClothingCard = ({ product }) => {
         return originalPrice > 0 && currentPrice > 0 && originalPrice > currentPrice;
     }, [product]);
 
+    // Hàm định dạng giá tiền theo chuẩn Việt Nam
     const formatPrice = (price) => {
         if (!price) return 'N/A';
         return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
     };
 
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImgError = (event) => {
         console.error('⚠️ Image failed to load:', event.target.src);
         event.target.src = placeholder;

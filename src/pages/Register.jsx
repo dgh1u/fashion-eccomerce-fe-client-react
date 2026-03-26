@@ -18,6 +18,7 @@ export default function Register() {
     const [generalError, setGeneralError] = useState('');
     const [showSuccess, setShowSuccess] = useState(false);
 
+    // Hàm kiểm tra tính hợp lệ của dữ liệu đăng ký
     const validateInput = () => {
         const newErrors = {};
         if (!formData.email) {
@@ -41,6 +42,7 @@ export default function Register() {
         return Object.keys(newErrors).length === 0;
     };
 
+    // Hàm xử lý đăng ký tài khoản
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!validateInput()) return;
@@ -58,6 +60,7 @@ export default function Register() {
         }
     };
 
+    // Hàm xóa thông báo lỗi khi nhập lại
     const clearError = (field) => {
         setErrors((prev) => {
             const newErrors = { ...prev };

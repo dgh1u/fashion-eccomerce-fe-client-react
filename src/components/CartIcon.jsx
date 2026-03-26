@@ -9,6 +9,7 @@ const CartIcon = () => {
     const { isAuthenticated } = useAuthStore();
     const navigate = useNavigate();
 
+    // Hàm xử lý chuyển hướng đến trang giỏ hàng
     const handleGoToCart = () => {
         if (!isAuthenticated) {
             navigate('/login');

@@ -24,6 +24,7 @@ export default function OrderHistory() {
 
     const { getProductImage, getImageUrl, handleImageError } = useProductImages();
 
+    // Hàm lấy danh sách đơn hàng
     const fetchOrders = async () => {
         setLoading(true);
         try {
@@ -48,7 +49,7 @@ export default function OrderHistory() {
         }
     };
 
-    // Load images for order items
+    // Hàm tải hình ảnh cho các sản phẩm trong đơn hàng
     const loadOrderItemImages = async (ordersList) => {
         for (const order of ordersList) {
             if (order.orderItems && order.orderItems.length > 0) {
@@ -74,15 +75,18 @@ export default function OrderHistory() {
         fetchOrders();
     }, [currentPage, statusFilter]);
 
+    // Hàm xử lý khi thay đổi trang
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
 
+    // Hàm xử lý khi thay đổi trạng thái lọc
     const handleStatusChange = (status) => {
         setStatusFilter(status);
         setCurrentPage(1);
     };
 
+    // Hàm xử lý hủy đơn hàng
     const handleCancelOrder = async (orderId) => {
         Modal.confirm({
             title: 'Xác nhận hủy đơn hàng',
@@ -106,6 +110,7 @@ export default function OrderHistory() {
         });
     };
 
+    // Hàm định dạng ngày tháng
     const formatDate = (dateString) => {
         return new Date(dateString).toLocaleString('vi-VN', {
             year: 'numeric',
@@ -116,6 +121,7 @@ export default function OrderHistory() {
         });
     };
 
+    // Hàm định dạng tiền tệ
     const formatCurrency = (amount) => {
         return new Intl.NumberFormat('vi-VN', {
             style: 'currency',
@@ -123,7 +129,7 @@ export default function OrderHistory() {
         }).format(amount);
     };
 
-    // Check if order can be cancelled (within 24h and status pending or paid)
+    // Hàm kiểm tra xem đơn hàng có thể hủy hay không
     const canCancelOrder = (order) => {
         if (order.status !== 'pending' && order.status !== 'paid') {
             return false;
@@ -136,7 +142,7 @@ export default function OrderHistory() {
         return hoursElapsed <= 24;
     };
 
-    // Get cancel reason message
+    // Hàm lấy thông báo lý do không thể hủy đơn
     const getCancelReasonMessage = (order) => {
         if (order.status !== 'pending' && order.status !== 'paid') {
             return 'Chỉ có thể hủy đơn hàng ở trạng thái chờ xử lý hoặc đã thanh toán';
@@ -153,7 +159,7 @@ export default function OrderHistory() {
         return '';
     };
 
-    // Get paid order warning
+    // Hàm lấy cảnh báo cho đơn hàng đã thanh toán
     const getPaidOrderWarning = (order) => {
         if (order.status !== 'paid') {
             return null;
@@ -179,7 +185,7 @@ export default function OrderHistory() {
         return `⏰ Còn ${timeText} để hủy đơn hàng này. Sau khi hủy đơn hàng hãy liên hệ với bộ phận chăm sóc khách hàng để lấy lại tiền.`;
     };
 
-    // Get auto-cancel warning for pending orders
+    // Hàm lấy cảnh báo tự động hủy đơn
     const getAutoCancelWarning = (order) => {
         if (order.status !== 'pending') {
             return null;

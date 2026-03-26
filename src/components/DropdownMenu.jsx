@@ -36,23 +36,27 @@ const DropdownMenu = ({ isMobile = false, closeMobileMenuFn = null }) => {
         fetchProfileData();
     }, [authStore.isAuthenticated, authStore.token]);
 
+    // Hàm hiển thị menu dropdown
     const showMenu = () => {
         if (hideTimeout) clearTimeout(hideTimeout);
         setShowDropdown(true);
     };
 
+    // Hàm ẩn menu dropdown với delay
     const hideMenu = () => {
         hideTimeout = setTimeout(() => {
             setShowDropdown(false);
         }, 200);
     };
 
+    // Hàm xử lý đăng xuất
     const handleLogout = () => {
         authStore.logout();
         navigate('/login');
         if (closeMobileMenuFn) closeMobileMenuFn();
     };
 
+    // Hàm đóng menu mobile nếu cần
     const closeMobileMenuIfNeeded = () => {
         if (closeMobileMenuFn) closeMobileMenuFn();
     };

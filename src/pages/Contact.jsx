@@ -11,6 +11,7 @@ export default function Contact() {
     });
     const [loading, setLoading] = useState(false);
 
+    // Hàm xử lý khi gửi form liên hệ
     const handleSubmit = async (e) => {
         e.preventDefault();
 

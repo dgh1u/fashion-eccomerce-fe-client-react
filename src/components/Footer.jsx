@@ -1,5 +1,6 @@
 import React from 'react';
 import { Facebook, MessageSquare, Mail, Phone, MapPin, Send, Instagram, Twitter } from 'lucide-react';
+import logoImage from '../assets/logo.png';
 
 const Footer = () => {
     return (
@@ -16,9 +17,7 @@ const Footer = () => {
                     {/* Company Info */}
                     <div className="space-y-6">
                         <div className="brand-logo">
-                            <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                28.Host
-                            </h2>
+                            <img src={logoImage} alt="Logo" className="h-16 w-auto object-contain" />
                             <div className="h-1 w-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mt-2"></div>
                         </div>
                         <p className="text-gray-300 text-sm leading-relaxed">
@@ -152,8 +151,8 @@ const Footer = () => {
                 {/* Bottom bar */}
                 <div className="border-t border-purple-500/20 pt-8">
                     <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                        <p className="text-sm text-gray-400">
-                            © 2025 <span className="text-purple-400 font-semibold">28.Host</span>. All rights reserved.
+                        <p className="text-sm text-gray-400 flex items-center gap-2">
+                            © 2025 <img src={logoImage} alt="Logo" className="h-6 w-auto inline-block" />. All rights reserved.
                         </p>
                         <div className="flex gap-6 text-xs text-gray-400">
                             <a href="/privacy-policy" className="hover:text-purple-400 transition-colors">Privacy Policy</a>

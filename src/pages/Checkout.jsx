@@ -23,10 +23,14 @@ export default function Checkout() {
     const subtotal = useMemo(() => cartStore.cartTotal(), [cartStore.cartTotal()]);
     const totalAmount = useMemo(() => subtotal + SHIPPING_FEE, [subtotal]);
 
+    // Hàm định dạng giá tiền theo chuẩn Việt Nam
     const formatPrice = (price) => new Intl.NumberFormat('vi-VN').format(price);
+    // Hàm lấy URL hình ảnh hoặc hình mặc định
     const getImageUrl = (image) => image || 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImageError = (e) => { e.target.src = 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image'; };
 
+    // Hàm xử lý khi gửi form thanh toán
     const handleSubmit = async (e) => {
         e.preventDefault();
 

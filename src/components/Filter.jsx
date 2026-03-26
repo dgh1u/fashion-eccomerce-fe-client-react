@@ -69,31 +69,35 @@ const Filter = ({ firstClass, onFiltersUpdate }) => {
 
     const currentSecondClassOptions = firstClass ? (secondClassOptions[firstClass] || []) : [];
 
+    // Hàm bật/tắt lựa chọn phân loại sản phẩm
     const toggleSecondClass = (value) => {
         setSelectedSecondClasses(prev =>
             prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
         );
     };
 
+    // Hàm bật/tắt lựa chọn kích thước
     const toggleSize = (value) => {
         setSelectedSizes(prev =>
             prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
         );
     };
 
+    // Hàm bật/tắt lựa chọn chất liệu
     const toggleMaterial = (value) => {
         setSelectedMaterials(prev =>
             prev.includes(value) ? prev.filter(m => m !== value) : [...prev, value]
         );
     };
 
+    // Hàm bật/tắt lựa chọn màu sắc
     const toggleColor = (value) => {
         setSelectedColors(prev =>
             prev.includes(value) ? prev.filter(c => c !== value) : [...prev, value]
         );
     };
 
-    // Đặt lại toàn bộ bộ lọc về giá trị mặc định
+    // Hàm đặt lại toàn bộ bộ lọc về mặc định
     const resetAll = () => {
         setPriceRange([0, 1000]);
         setSelectedSecondClasses([]);

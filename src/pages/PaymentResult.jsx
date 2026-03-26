@@ -27,13 +27,17 @@ const PaymentResult = () => {
     const [paymentResult, setPaymentResult] = useState(null);
     const [productImages, setProductImages] = useState(new Map());
 
+    // Hàm lấy URL hình ảnh hoặc hình mặc định
     const getImageUrl = (image) => image || 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImageError = (e) => { e.target.src = 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image'; };
 
+    // Hàm định dạng giá tiền
     const formatPrice = (price) => {
         return new Intl.NumberFormat('vi-VN').format(price);
     };
 
+    // Hàm định dạng ngày giờ
     const formatDateTime = (dateTimeString) => {
         if (!dateTimeString) return '';
 
@@ -51,6 +55,7 @@ const PaymentResult = () => {
         }
     };
 
+    // Hàm kiểm tra thanh toán thành công
     const isPaymentSuccessful = (paymentData) => {
         if (!paymentData) return false;
 
@@ -61,6 +66,7 @@ const PaymentResult = () => {
             paymentData.status === 'CONFIRMED';
     };
 
+    // Hàm tải hình ảnh cho các sản phẩm trong đơn hàng
     const loadOrderItemImages = async (orderItems) => {
         const newImages = new Map(productImages);
 
@@ -95,6 +101,7 @@ const PaymentResult = () => {
         setProductImages(newImages);
     };
 
+    // Hàm kiểm tra kết quả thanh toán
     const checkPaymentResult = async () => {
         try {
             setLoading(true);
@@ -139,6 +146,7 @@ const PaymentResult = () => {
         }
     };
 
+    // Hàm thử lại thanh toán
     const retryPayment = () => {
         const checkoutInfo = localStorage.getItem('checkout_info');
 
@@ -149,6 +157,7 @@ const PaymentResult = () => {
         }
     };
 
+    // Hàm kiểm tra lại kết quả thanh toán
     const checkAgain = () => {
         checkPaymentResult();
     };

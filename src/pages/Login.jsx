@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../stores/store';
 import { Eye, EyeOff } from 'lucide-react';
 import Logo from '../components/Logo';
+import logoImage from '../assets/logo.png';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -24,7 +25,7 @@ const Login = () => {
         });
     }, []);
 
-    // Kiểm tra tính hợp lệ của dữ liệu đầu vào
+    // Hàm kiểm tra tính hợp lệ của dữ liệu nhập vào
     const validateInput = () => {
         const newErrors = {};
 
@@ -44,7 +45,7 @@ const Login = () => {
         return Object.keys(newErrors).length === 0;
     };
 
-    // Xóa thông báo lỗi khi người dùng nhập lại
+    // Hàm xóa thông báo lỗi khi người dùng nhập lại
     const clearError = (field) => {
         if (errors[field]) {
             setErrors(prev => ({ ...prev, [field]: '' }));
@@ -52,12 +53,12 @@ const Login = () => {
         setGeneralError('');
     };
 
-    // Bật/tắt hiển thị mật khẩu
+    // Hàm bật/tắt hiển thị mật khẩu
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    // Xử lý đăng nhập
+    // Hàm xử lý đăng nhập
     const handleLogin = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -215,10 +216,10 @@ const Login = () => {
 
                 {/* Footer */}
                 <div className="text-center mt-6" data-aos="fade-up" data-aos-delay="800">
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
                         &copy; 2025
-                        <Link to="/home" className="text-blue-600 hover:text-blue-700 font-medium ml-1">
-                            28.Host Team
+                        <Link to="/home" className="inline-flex items-center hover:opacity-80 transition-opacity">
+                            <img src={logoImage} alt="Logo" className="h-6 w-auto" />
                         </Link>
                         . All rights reserved.
                     </p>

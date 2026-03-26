@@ -1,28 +1,31 @@
 import React from 'react';
+import logoImage from '../assets/logo.png';
 
 const Logo = () => {
-    return (
-        <>
-            <div className="logo-text">
-                <div className="host">28.Host</div>
-            </div>
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+  return (
+    <>
+      <div className="logo-text">
+        <img src={logoImage} alt="Logo" className="host-logo" />
+      </div>
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .logo-text {
-          font-family: "Kaushan Script", cursive;
           line-height: 1;
           text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
-        .host {
-          font-size: 2.2em;
-          font-weight: 700;
-          letter-spacing: 1px;
-          color: #000000;
+        .host-logo {
+          height: 3.5rem;
+          width: auto;
+          object-fit: contain;
+          display: block;
+          margin: 0 auto;
         }
       `}} />
-        </>
-    );
+    </>
+  );
 };
 
 export default Logo;

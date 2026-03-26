@@ -24,6 +24,7 @@ const Verify = () => {
         }
     }, [countdown]);
 
+    // Hàm xử lý xác thực OTP
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -49,6 +50,7 @@ const Verify = () => {
         }
     };
 
+    // Hàm xử lý gửi lại mã OTP
     const handleResendOTP = async () => {
         if (!canResend) return;
 

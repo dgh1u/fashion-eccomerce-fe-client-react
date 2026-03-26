@@ -31,6 +31,7 @@ const ProfileSidebar = () => {
         maximumFractionDigits: 0,
     }).format(balance);
 
+    // Hàm kiểm tra trang hiện tại có đang active hay không
     const isActive = (path) => location.pathname === path;
 
     return (

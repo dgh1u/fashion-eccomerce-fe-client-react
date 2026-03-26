@@ -6,6 +6,7 @@ export function useProductImages() {
     const loadingImages = useRef(new Set());
     const [, forceUpdate] = useState({});
 
+    // Hàm lấy hình ảnh sản phẩm với caching
     const getProductImage = useCallback(async (productId) => {
         // Kiểm tra cache trước
         if (imageCache.current.has(productId)) {
@@ -53,6 +54,7 @@ export function useProductImages() {
         }
     }, []);
 
+    // Hàm chuyển đổi URL hình ảnh thành đường dẫn đầy đủ
     const getImageUrl = useCallback((imageUrl) => {
         if (!imageUrl) {
             return 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
@@ -68,6 +70,7 @@ export function useProductImages() {
         return `${baseURL}${imageUrl.startsWith('/') ? '' : '/'}${imageUrl}`;
     }, []);
 
+    // Hàm xử lý khi hình ảnh bị lỗi
     const handleImageError = useCallback((e) => {
         e.target.src = 'https://dummyimage.com/400x300/cccccc/000000.png&text=No+Image';
     }, []);

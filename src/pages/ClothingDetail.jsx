@@ -101,32 +101,36 @@ const ClothingDetail = () => {
         return originalPrice > 0 && currentPrice > 0 && originalPrice > currentPrice;
     }, [product]);
 
-    // Image gallery functions
+    // Hàm chọn hình ảnh từ gallery
     const selectImage = (index) => {
         setCurrentImageIndex(index);
     };
 
+    // Hàm chuyển sang hình ảnh tiếp theo
     const nextImage = () => {
         if (currentImageIndex < imageUrls.length - 1) {
             setCurrentImageIndex(currentImageIndex + 1);
         }
     };
 
+    // Hàm quay lại hình ảnh trước đó
     const previousImage = () => {
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
         }
     };
 
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImageError = (e) => {
         e.target.src = 'https://dummyimage.com/800x600/cccccc/000000.png&text=No+Image';
     };
 
+    // Hàm xử lý khi thumbnail lỗi
     const handleThumbnailError = (e) => {
         e.target.src = 'https://dummyimage.com/200x200/cccccc/000000.png&text=Error';
     };
 
-    // Load gallery images
+    // Hàm tải danh sách hình ảnh của sản phẩm
     const loadGalleryImages = async (productId) => {
         try {
             const urls = await getImageByProduct(productId);
@@ -144,7 +148,7 @@ const ClothingDetail = () => {
         }
     };
 
-    // Fetch product details
+    // Hàm lấy thông tin chi tiết sản phẩm
     const fetchProduct = async () => {
         setLoading(true);
         try {
@@ -176,7 +180,7 @@ const ClothingDetail = () => {
         }
     };
 
-    // Fetch related products
+    // Hàm lấy danh sách sản phẩm liên quan
     const fetchRelatedProducts = async () => {
         if (!product) return;
 

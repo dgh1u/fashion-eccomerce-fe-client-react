@@ -101,32 +101,36 @@ const AccessoriesDetail = () => {
         return originalPrice > 0 && currentPrice > 0 && originalPrice > currentPrice;
     }, [product]);
 
-    // Image gallery functions
+    // Hàm chọn hình ảnh từ gallery
     const selectImage = (index) => {
         setCurrentImageIndex(index);
     };
 
+    // Hàm chuyển sang hình ảnh tiếp theo
     const nextImage = () => {
         if (currentImageIndex < imageUrls.length - 1) {
             setCurrentImageIndex(currentImageIndex + 1);
         }
     };
 
+    // Hàm quay lại hình ảnh trước đó
     const previousImage = () => {
         if (currentImageIndex > 0) {
             setCurrentImageIndex(currentImageIndex - 1);
         }
     };
 
+    // Hàm xử lý khi hình ảnh lỗi
     const handleImageError = (e) => {
         e.target.src = 'https://dummyimage.com/800x600/cccccc/000000.png&text=No+Image';
     };
 
+    // Hàm xử lý khi thumbnail lỗi
     const handleThumbnailError = (e) => {
         e.target.src = 'https://dummyimage.com/200x200/cccccc/000000.png&text=Error';
     };
 
-    // Load gallery images
+    // Hàm tải danh sách hình ảnh của sản phẩm
     const loadGalleryImages = async (productId) => {
         try {
             const urls = await getImageByProduct(productId);
@@ -144,7 +148,7 @@ const AccessoriesDetail = () => {
         }
     };
 
-    // Fetch product details
+    // Hàm lấy thông tin chi tiết sản phẩm
     const fetchProduct = async () => {
         setLoading(true);
         try {
@@ -176,7 +180,7 @@ const AccessoriesDetail = () => {
         }
     };
 
-    // Fetch related products
+    // Hàm lấy danh sách sản phẩm liên quan
     const fetchRelatedProducts = async () => {
         if (!product) return;
 
@@ -201,17 +205,19 @@ const AccessoriesDetail = () => {
         }
     };
 
-    // Size and quantity management
+    // Hàm lấy số lượng sản phẩm còn lại của size đã chọn
     const getAvailableQuantity = (sizeId) => {
         const inventory = product?.inventories?.find((inv) => inv.size.id === sizeId);
         return inventory?.quantity || 0;
     };
 
+    // Hàm lấy số lượng tối đa có thể mua
     const getMaxQuantity = () => {
         if (!selectedSize) return 0;
         return getAvailableQuantity(selectedSize.id);
     };
 
+    // Hàm xử lý chọn size sản phẩm
     const handleSelectSize = (size, availableQuantity) => {
         if (availableQuantity > 0) {
             setSelectedSize(size);
@@ -219,6 +225,7 @@ const AccessoriesDetail = () => {
         }
     };
 
+    // Hàm tăng số lượng sản phẩm
     const increaseQuantity = () => {
         const maxQty = getMaxQuantity();
         if (quantity < maxQty) {
@@ -226,12 +233,14 @@ const AccessoriesDetail = () => {
         }
     };
 
+    // Hàm giảm số lượng sản phẩm
     const decreaseQuantity = () => {
         if (quantity > 1) {
             setQuantity(quantity - 1);
         }
     };
 
+    // Hàm kiểm tra và điều chỉnh số lượng nhập vào
     const validateQuantity = (e) => {
         const value = parseInt(e.target.value);
         const maxQty = getMaxQuantity();
@@ -244,7 +253,7 @@ const AccessoriesDetail = () => {
         }
     };
 
-    // Cart operations
+    // Hàm thêm sản phẩm vào giỏ hàng
     const addToCart = async () => {
         if (!authStore.isAuthenticated) {
             message.warning('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
@@ -271,6 +280,7 @@ const AccessoriesDetail = () => {
         }
     };
 
+    // Hàm mua ngay sản phẩm
     const buyNow = async () => {
         if (!authStore.isAuthenticated) {
             message.warning('Vui lòng đăng nhập để mua sản phẩm');

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-// Hook to detect click outside of an element
+// Hook phát hiện click bên ngoài phần tử
 export const useClickOutside = (handler) => {
     const ref = useRef();
 
     useEffect(() => {
+        // Hàm xử lý sự kiện click bên ngoài
         const handleClickOutside = (event) => {
             if (ref.current && !ref.current.contains(event.target)) {
                 handler();
@@ -20,7 +21,7 @@ export const useClickOutside = (handler) => {
     return ref;
 };
 
-// Hook for debounced value
+// Hook trì hoãn giá trị để tối ưu hiệu suất
 export const useDebounce = (value, delay = 500) => {
     const [debouncedValue, setDebouncedValue] = useState(value);
 

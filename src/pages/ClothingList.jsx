@@ -35,11 +35,13 @@ const ClothingList = () => {
         { value: 'price_desc', label: 'Giá cao trước' },
     ];
 
+    // Hàm lấy nhãn hiển thị của tùy chọn sắp xếp
     const getSortLabel = () => {
         const option = sortOptions.find((opt) => opt.value === sortOption);
         return option ? option.label : 'Hàng mới nhất';
     };
 
+    // Hàm xây dựng các tham số truy vấn API
     const buildQueryParams = (currentFilters = filters) => {
         const params = {};
         params.firstClass = 'QUAN_AO';
@@ -117,6 +119,7 @@ const ClothingList = () => {
         return params;
     };
 
+    // Hàm lấy danh sách sản phẩm từ API
     const fetchProducts = async (currentFilters = filters) => {
         setLoading(true);
         setErrorMsg('');
@@ -151,6 +154,7 @@ const ClothingList = () => {
         fetchProducts();
     }, []);
 
+    // Hàm xử lý khi thay đổi trang
     const handlePageChange = (page) => {
         setPagination((prev) => ({ ...prev, current: page }));
         fetchProducts();
@@ -160,6 +164,7 @@ const ClothingList = () => {
         });
     };
 
+    // Hàm xử lý khi thay đổi kiểu sắp xếp
     const handleSortChange = (value) => {
         setSortOption(value);
         setShowSortDropdown(false);
@@ -167,6 +172,7 @@ const ClothingList = () => {
         fetchProducts();
     };
 
+    // Hàm xử lý khi cập nhật bộ lọc
     const handleFilterUpdate = (newFilters) => {
         const updatedFilters = {
             ...filters,

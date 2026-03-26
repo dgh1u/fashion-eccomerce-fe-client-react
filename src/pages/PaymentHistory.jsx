@@ -15,7 +15,7 @@ const PaymentHistory = () => {
         total: 0,
     });
 
-    // Format currency
+    // Hàm định dạng tiền tệ
     const formatCurrency = (amount) => {
         if (!amount) return '0';
         return new Intl.NumberFormat('vi-VN').format(amount);
@@ -26,7 +26,7 @@ const PaymentHistory = () => {
         return paymentItems.reduce((sum, item) => sum + (item.amount || 0), 0);
     }, [paymentItems]);
 
-    // Fetch payments
+    // Hàm lấy danh sách giao dịch thanh toán
     const fetchPayments = async () => {
         try {
             const profileResponse = await getProfile();
@@ -50,7 +50,7 @@ const PaymentHistory = () => {
         }
     };
 
-    // Handle pagination
+    // Hàm xử lý thay đổi trang
     const handlePaginationChange = (page, pageSize) => {
         setPagination(prev => ({
             ...prev,
@@ -59,17 +59,18 @@ const PaymentHistory = () => {
         }));
     };
 
-    // Handle date change
+    // Hàm xử lý khi thay đổi ngày lọc
     const handleDateChange = () => {
         setPagination(prev => ({ ...prev, current: 1 }));
     };
 
-    // Disable dates
+    // Hàm vô hiệu hóa ngày kết thúc không hợp lệ
     const disabledEndDate = (current) => {
         if (!startDate) return false;
         return current && current.isBefore(startDate, 'day');
     };
 
+    // Hàm vô hiệu hóa ngày bắt đầu không hợp lệ
     const disabledStartDate = (current) => {
         if (!endDate) return false;
         return current && current.isAfter(endDate, 'day');
